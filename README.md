@@ -1,1 +1,1 @@
-![Tampilan Web Dashboard AI LifeOS](assets/preview)
+![Tampilan Web Dashboard AI LifeOS](assets/preview.png)
