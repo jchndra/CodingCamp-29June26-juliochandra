@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI LifeOS Dashboard - Premium Productivity System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="user-greeting">
+                    <h1 id="greeting">Good Morning</h1>
+                    <p class="user-name">
+                        <span id="userName">Champion</span>
+                        <span class="wave">👋</span>
+                    </p>
+                    <p class="tagline">Ready to conquer your goals today?</p>
+                </div>
+                <div class="time-display">
+                    <div class="clock" id="clock">00:00:00</div>
+                    <div class="date" id="date">Monday, January 1, 2024</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard -->
+    <div class="container">
+        <div class="dashboard-grid">
+
+            <!-- Pomodoro Timer Card -->
+            <div class="card pomodoro-card">
+                <div class="card-header">
+                    <h2>🍅 Focus Mode</h2>
+                    <button class="btn-icon" id="pomodoroSettings">⚙️</button>
+                </div>
+                <div class="pomodoro-content">
+                    <div class="timer-ring">
+                        <svg class="progress-ring" width="200" height="200">
+                            <circle class="progress-ring-circle-bg" cx="100" cy="100" r="90"></circle>
+                            <circle class="progress-ring-circle" cx="100" cy="100" r="90" id="progressCircle"></circle>
+                        </svg>
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+                    </div>
+                    <div class="timer-mode">
+                        <button class="mode-btn active" data-mode="focus">Focus</button>
+                        <button class="mode-btn" data-mode="shortBreak">Short Break</button>
+                        <button class="mode-btn" data-mode="longBreak">Long Break</button>
+                    </div>
+                    <div class="timer-controls">
+                        <button class="btn btn-primary" id="startTimer">Start</button>
+                        <button class="btn btn-secondary" id="pauseTimer">Pause</button>
+                        <button class="btn btn-secondary" id="resetTimer">Reset</button>
+                    </div>
+                    <div class="session-info">
+                        <span>Sessions Today: <strong id="sessionCount">0</strong></span>
+                        <span>Focus Time: <strong id="focusTime">0h 0m</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task Manager Card -->
+            <div class="card task-card">
+                <div class="card-header">
+                    <h2>✓ Task Manager</h2>
+                    <button class="btn-icon" id="taskSort">↕️</button>
+                </div>
+                <div class="task-input-section">
+                    <input type="text" id="taskInput" placeholder="Add a new task..." class="input-field">
+                    <select id="taskPriority" class="select-field">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                    <select id="taskCategory" class="select-field">
+                        <option value="personal">Personal</option>
+                        <option value="work">Work</option>
+                        <option value="study">Study</option>
+                        <option value="health">Health</option>
+                        <option value="finance">Finance</option>
+                    </select>
+                    <button class="btn btn-primary" id="addTaskBtn">Add Task</button>
+                </div>
+                <div class="task-filter-section">
+                    <input type="text" id="taskSearch" placeholder="Search tasks..." class="input-field">
+                    <select id="taskFilter" class="select-field">
+                        <option value="all">All Tasks</option>
+                        <option value="active">Active</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="task-list" id="taskList">
+                    <!-- Tasks will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Productivity Stats Card -->
+            <div class="card stats-card">
+                <div class="card-header">
+                    <h2>📊 Productivity Stats</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value" id="completedTasks">0</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-value" id="pendingTasks">0</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-value" id="currentStreak">0</div>
+                        <div class="stat-label">Day Streak</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-value" id="productivityScore">0%</div>
+                        <div class="stat-label">Score</div>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>Weekly Progress</span>
+                        <span id="weeklyProgress">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="weeklyProgressBar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links Card -->
+            <div class="card quicklinks-card">
+                <div class="card-header">
+                    <h2>🔗 Quick Links</h2>
+                    <button class="btn-icon" id="addLinkBtn">➕</button>
+                </div>
+                <div class="quicklinks-input" id="quicklinksInput" style="display: none;">
+                    <input type="text" id="linkTitle" placeholder="Link title" class="input-field">
+                    <input type="url" id="linkUrl" placeholder="https://..." class="input-field">
+                    <div class="btn-group">
+                        <button class="btn btn-primary" id="saveLinkBtn">Save</button>
+                        <button class="btn btn-secondary" id="cancelLinkBtn">Cancel</button>
+                    </div>
+                </div>
+                <div class="quicklinks-grid" id="quicklinksList">
+                    <!-- Quick links will be dynamically added here -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⚙️ Settings</h3>
+                <button class="btn-close" id="closeSettings">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label>Your Name</label>
+                    <input type="text" id="userNameInput" class="input-field" placeholder="Enter your name">
+                </div>
+                <div class="setting-group">
+                    <label>Focus Duration (minutes)</label>
+                    <input type="number" id="focusDuration" class="input-field" value="25" min="1" max="60">
+                </div>
+                <div class="setting-group">
+                    <label>Short Break (minutes)</label>
+                    <input type="number" id="shortBreakDuration" class="input-field" value="5" min="1" max="30">
+                </div>
+                <div class="setting-group">
+                    <label>Long Break (minutes)</label>
+                    <input type="number" id="longBreakDuration" class="input-field" value="15" min="1" max="60">
+                </div>
+                <button class="btn btn-primary" id="saveSettings">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle & Settings Button -->
+    <div class="floating-controls">
+        <button class="btn-float" id="themeToggle" title="Toggle Dark Mode">🌓</button>
+        <button class="btn-float" id="settingsBtn" title="Settings">⚙️</button>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
